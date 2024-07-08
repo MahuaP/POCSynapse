@@ -1,0 +1,268 @@
+{
+	"name": "pl_copy_adls_syndw",
+	"properties": {
+		"activities": [
+			{
+				"name": "get storage name",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": {
+						"value": "@concat('https://kv-',pipeline().parameters.env,'-git.vault.azure.net/secrets/syn-storage-account/53cf8b4b43c94fda8ea925e359e05909')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "set storage name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "get storage name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "syn-storage-account",
+					"value": {
+						"value": "@activity('get storage name').output.value",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Copy",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "set storage name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Series_reference",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Series_reference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Period",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Period",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_value",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Data_value",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Suppressed",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Suppressed",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "STATUS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "UNITS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "UNITS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Magnitude",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Magnitude",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "Subject",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Subject",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Group",
+									"type": "String"
+								},
+								"sink": {
+									"name": "grp",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Series_title_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Series_title_1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Series_title_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Series_title_2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Series_title_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Series_title_3",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Series_title_4",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Series_title_4",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Series_title_5",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Series_title_5",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_adls_source",
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": "machine-readable-business-employment-data-mar-2024-quarter.csv"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_synapsetables",
+						"type": "DatasetReference",
+						"parameters": {
+							"schemaName": "dbo",
+							"tableName": "emp_data",
+							"env": "dev"
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"env": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"env": {
+				"type": "String"
+			},
+			"syn-storage-account": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
