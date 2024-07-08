@@ -244,7 +244,8 @@
 						"parameters": {
 							"schemaName": "dbo",
 							"tableName": "emp_data",
-							"env": "dev"
+							"env": "dev",
+							"DBname": "syndwdevops"
 						}
 					}
 				]
