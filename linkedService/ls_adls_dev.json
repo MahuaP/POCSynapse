@@ -1,0 +1,32 @@
+{
+	"name": "ls_adls_dev",
+	"properties": {
+		"parameters": {
+			"env": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "@{concat('https://syn',linkedService().env,'opsstorage.dfs.core.windows.net/')}",
+			"accountKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_kv_dev",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"env": {
+							"value": "@linkedService().env",
+							"type": "Expression"
+						}
+					}
+				},
+				"secretName": {
+					"value": "@concat('syn-',linkedService().env,'-syndevopsstorage-accesskey')",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}
