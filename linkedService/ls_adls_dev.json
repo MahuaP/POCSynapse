@@ -22,7 +22,10 @@
 						}
 					}
 				},
-				"secretName": "syn-dev-syndevopsstorage-accesskey"
+				"secretName": {
+					"value": "@concat('syn-',linkedService().env,'-syndevopsstorage-accesskey')",
+					"type": "Expression"
+				}
 			}
 		}
 	}
