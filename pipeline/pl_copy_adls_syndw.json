@@ -249,7 +249,10 @@
 							"schemaName": "dbo",
 							"tableName": "emp_data",
 							"env": "dev",
-							"DBname": "syndwdevops"
+							"DBname": {
+								"value": "@activity('get DB name').output.value",
+								"type": "Expression"
+							}
 						}
 					}
 				]
