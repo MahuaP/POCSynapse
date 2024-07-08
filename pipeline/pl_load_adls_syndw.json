@@ -23,7 +23,7 @@
 				}
 			},
 			{
-				"name": "Set variable1",
+				"name": "set storage name",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -51,7 +51,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Set variable1",
+						"activity": "set storage name",
 						"dependencyConditions": [
 							"Succeeded"
 						]
