@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"method": "GET",
 					"url": {
-						"value": "@concat('https://kv-',pipeline().parameters.env,'-git.vault.azure.net/secrets/syn-storage-account/53cf8b4b43c94fda8ea925e359e05909?api-version=7.0')",
+						"value": "@concat('https://kv-',pipeline().parameters.env,'-git.vault.azure.net/secrets/syn-storage-account?api-version=7.0')",
 						"type": "Expression"
 					},
 					"authentication": {
@@ -279,7 +279,7 @@
 				"typeProperties": {
 					"method": "GET",
 					"url": {
-						"value": "@concat('https://kv-',pipeline().parameters.env,'-git.vault.azure.net/secrets/syn-dw-devops/6fe22de3da294b62a9d00709b8a99ca0?api-version=7.0')",
+						"value": "@concat('https://kv-',pipeline().parameters.env,'-git.vault.azure.net/secrets/syn-dw-devops?api-version=7.0')",
 						"type": "Expression"
 					},
 					"authentication": {
