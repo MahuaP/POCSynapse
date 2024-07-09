@@ -315,7 +315,8 @@
 		],
 		"parameters": {
 			"env": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "dev"
 			}
 		},
 		"variables": {
