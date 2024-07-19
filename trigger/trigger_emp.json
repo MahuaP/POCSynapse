@@ -1,0 +1,17 @@
+{
+	"name": "trigger_emp",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 1,
+				"startTime": "2024-07-19T13:03:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
