@@ -1,0 +1,22 @@
+{
+	"name": "ls_synapse_dev",
+	"properties": {
+		"parameters": {
+			"env": {
+				"type": "string"
+			},
+			"DBname": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDW",
+		"typeProperties": {
+			"server": "@{concat('syn-',linkedService().env,'ops-ws.sql.azuresynapse.net')}",
+			"database": "@{linkedService().DBname}",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SystemAssignedManagedIdentity"
+		}
+	}
+}
