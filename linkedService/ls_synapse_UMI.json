@@ -1,0 +1,18 @@
+{
+	"name": "ls_synapse_UMI",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDW",
+		"typeProperties": {
+			"server": "syn-devops-ws.sql.azuresynapse.net",
+			"database": "syndwdevops",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "UserAssignedManagedIdentity",
+			"credential": {
+				"referenceName": "cr_user_mi_devops",
+				"type": "CredentialReference"
+			}
+		}
+	}
+}
