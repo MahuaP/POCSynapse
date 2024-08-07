@@ -1,6 +1,13 @@
 {
 	"name": "ds_synapsetables",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_syn_devops",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "syndwdevops"
+			}
+		},
 		"parameters": {
 			"schemaName": {
 				"type": "string"
