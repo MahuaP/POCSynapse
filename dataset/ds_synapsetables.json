@@ -1,13 +1,6 @@
 {
 	"name": "ds_synapsetables",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ls_synapse_UMI",
-			"type": "LinkedServiceReference",
-			"parameters": {
-				"DBName": "syndwdevops"
-			}
-		},
 		"parameters": {
 			"schemaName": {
 				"type": "string"
