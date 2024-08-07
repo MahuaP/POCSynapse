@@ -1,5 +1,5 @@
 {
-	"name": "ls_syn_devops",
+	"name": "ls_syn_bz",
 	"properties": {
 		"parameters": {
 			"DBName": {
@@ -11,7 +11,7 @@
 		"typeProperties": {
 			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:syn-devops-ws.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}",
 			"credential": {
-				"referenceName": "cr_user_mi_devops",
+				"referenceName": "cr_user_mi_uatops",
 				"type": "CredentialReference"
 			}
 		}

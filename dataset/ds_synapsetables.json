@@ -2,7 +2,7 @@
 	"name": "ds_synapsetables",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_syn_devops",
+			"referenceName": "ls_syn_bz",
 			"type": "LinkedServiceReference",
 			"parameters": {
 				"DBName": "syndwdevops"
