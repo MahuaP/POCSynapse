@@ -2,17 +2,10 @@
 	"name": "ds_synapsetables",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_synapse_dev",
+			"referenceName": "ls_syn_devops",
 			"type": "LinkedServiceReference",
 			"parameters": {
-				"env": {
-					"value": "@dataset().env",
-					"type": "Expression"
-				},
-				"DBname": {
-					"value": "@dataset().DBname",
-					"type": "Expression"
-				}
+				"DBName": "syndwdevops"
 			}
 		},
 		"parameters": {
