@@ -1,14 +1,15 @@
 {
 	"name": "ls_synapse_UMI",
 	"properties": {
+		"parameters": {
+			"DBName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlDW",
 		"typeProperties": {
-			"server": "syn-devops-ws.sql.azuresynapse.net",
-			"database": "syndwdevops",
-			"encrypt": "mandatory",
-			"trustServerCertificate": false,
-			"authenticationType": "UserAssignedManagedIdentity",
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:syn-devops-ws.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}",
 			"credential": {
 				"referenceName": "cr_user_mi_devops",
 				"type": "CredentialReference"
